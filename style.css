@@ -1,0 +1,38 @@
+body {
+    padding: 0;
+    margin: 0;
+    
+   
+    background: #b9b9b9;}
+
+
+.container-s {
+   
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+    padding: 15px;
+    background: #FFFFFF;
+}
+.container-d {
+margin-bottom: 50px;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    background: #FFFFFF;
+}
+
+.main{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+min-height: 100vh;
+
+max-width: 1500px;
+padding-top: 70px;
+}
+.content1{
+    height: 100%;
+}
+.pointer{cursor: pointer;}

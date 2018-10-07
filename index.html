@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>login</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<!-- .................................................. -->
+<!-- navbar -->
+<nav class=" navbar fixed-top navbar-expand-sm navbar-dark bg-dark ">
+        <div class="container">
+            <a class="navbar-brand" href="#">Training</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a id="logincorner" class="nav-link" href="#">signin</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+
+<!-- main body -->
+<div class="container-c pt-5 mt-5">
+  <div class="col-md-8 col-xl-4 mx-auto ">
+          <div class="card">
+            <div class="card-header">
+              <h4>Admin Login</h4>
+            </div>
+            <div class="card-body">
+              <div action="index.html">
+                <div class="form-group">
+                  <label for="email">User</label>
+                  <input type="text" id="user" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="pass" class="form-control ">
+                </div>
+                <button  id="loginBu" class="btn btn-primary btn-block mb-3 mt-5">Login</button>
+              </div>
+            </div>
+          </div>
+  </div>
+</div>
+<!-- footer -->
+<footer id="footer" class="bg-dark fixed-bottom text-white mt-1 p-1 ">
+    <div class="container ">
+    	<p class="text-center text-muted">
+            Copyright ©
+            <span id="year">2018</span>
+            tamim
+        </p>
+    </div>
+</footer>
+
+<!-- .................................................. -->
+    <!-- Bootstarp && jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<!-- my script -->
+  <script type="text/javascript" src="script.js"></script>
+  <script>
+  
+  user = document.getElementById('user');
+  pass = document.getElementById('pass')
+
+  loginBu=document.getElementById('loginBu');
+
+  loginBu.onclick = function(){
+    if (user.value==='admin'&& pass.value==='123'){
+      location.href = 'departments.html' //FIXME: change url
+    }
+  };
+  
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>employees</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <!-- .................................................. -->
+    <!-- navbar -->
+    <nav class=" navbar fixed-top navbar-expand-sm navbar-dark bg-dark ">
+        <div class="container">
+            <a class="navbar-brand" href="">Training</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a id="logincorner" class="nav-link" href="login.html">signin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- main body -->
+    <div class=" main ">
+        <div class=" row">
+            <!-- sidebar -->
+            <div class="col-md-3 col-xl-2 text-center content1 mb-3 bg-dark">
+
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a href="departments.html" class="nav-link text-white" href="">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html" class="nav-link text-white" href="">Employees</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- content -->
+            <div class="col-md-9 col-xl-10 content1">
+                <div class="container-s ">
+                    <h2 class="mb-5 p-3">Employees</h2>
+
+                    <!-- actions -->
+                    <div id="actions" class="mb-3">
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <a id="showAddModal" class="btn btn-success btn-block">
+                                    <i class="fas fa-plus"></i> Add employee
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- ======================================================= -->
+                    <!--                        table                            -->
+                    <!-- ======================================================= -->
+                    <table class="table table-bordered table-hover text-center">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Gender</th>
+                                <th>Dep ID</th>
+                                <th>Birthday</th>
+                                <th>Is Active</th>
+                                <th>salary</th>
+                                <th>Years Of Ex.</th>
+                                <th>Notes</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="empTable">
+                            <!-- dynamic -->
+                        </tbody>
+                    </table>
+                    <div id="alert" class="alert alert-success text-center">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <footer class="bg-dark fixed-bottom text-white mt-1 p-1 ">
+        <div class="container ">
+            <p class="text-center text-muted">
+                Copyright ©
+                <span id="year">2018</span>
+                tamim
+            </p>
+        </div>
+    </footer>
+    <!--============================= modals ============================
+        ================================================================= -->
+    <!-- add modal -->
+    <div class="modal " id="addEmpModal" style="display: none;" data-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary">
+                    <h6 id="addEmpModalHeader" class="modal-title  text-white">Add employee</h6>
+                    <button class="close text-white" data-dismiss="modal"><i class="fas fa-window-close"></i> </button>
+                </div>
+                <div class="modal-body">
+                    <!--  body -->
+                    <form>
+                        <!-- TEXT FIELD GROUPS -->
+
+
+                        <!-- name -->
+                        <div class="form-group p-1">
+                            <label for="empName">Name</label>
+                            <input class="form-control" type="text" id="empName" maxlength="100" placeholder="Enter employee name">
+                            <div class="invalid-feedback">
+                                only letters [A-Z a-z] spaces and ' allowed
+                            </div>
+                        </div>
+
+                        <!--  employee department id -->
+                        <div class="form-group  p-1">
+                            <label for="depIdListAdd">Department ID</label>
+                            <select id="depIdListAdd" class="form-control">
+                                <!-- dep id list here -->
+
+                            </select>
+                            <div class="invalid-feedback">
+                                select department id, if emptey please create new department
+                            </div>
+                        </div>
+
+                        <!-- gender -->
+                        <div class="form-group   p-1">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" id="gender">
+                                <option>male</option>
+                                <option>female</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                select gender
+                            </div>
+                        </div>
+
+                        <!-- birthday -->
+                        <div class="form-group   p-1">
+                            <label for="birth">Birth date</label>
+                            <input class="form-control" type="date" id="birth">
+                            <div class="invalid-feedback">
+                                inter a valid date
+                            </div>
+                        </div>
+
+                        <!-- isActive -->
+                        <div class="form-group   p-1">
+                            <label for="isActive ">Is active</label>
+                            <div class=" form-control" id="isActive">
+
+                                <label class="radio-inline mx-3"><input type="radio" id="radYes" name="optradio"
+                                        checked>Yes</label>
+                                <label class="radio-inline mx-3"><input type="radio" id="radNo" name="optradio">No</label>
+                            </div>
+                        </div>
+                        <!-- salary -->
+                        <div class="form-group   p-1">
+                            <label for="salary">salary</label>
+                            <input class="form-control" type="number" min="0" maxlength="7" id="salary" placeholder="Enter employee salary in JD">
+                            <div class="invalid-feedback">
+                                Enter a valid number 
+                            </div>
+                        </div>
+
+                        <!-- years of experiennce -->
+                        <div class="form-group   p-1">
+                            <label for="yrsEx">Years of experiance</label>
+                            <input class="form-control" type="number" min="0" step="1" maxlength="2" id="yrsEx"
+                                placeholder="ex. 3">
+                            <div class="invalid-feedback">
+                                Enter a valid number
+                            </div>
+                        </div>
+
+                        <!-- notes -->
+                        <div class="form-group form-group-sm  p-1">
+                            <label for="notes">Notes</label>
+                            <textarea class="form-control" id="notes" maxlength="1000" rows="3"></textarea>
+                        </div>
+
+                    </form>
+                    <!--  -->
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-block" id="buAddEmp" type="submit">Submit</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- delete dep modal -->
+    <div class="modal" id="delEmpModal" style="padding-right: 15px; display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 id="depNameHeader" class="modal-title">Delete {employee name}</h5>
+                    <button class="close" data-dismiss="modal">×</button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this employee?
+                </div>
+                <div class="modal-footer">
+                    <button id="buDelEmp" class="btn btn-danger">DELETE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- .................................................. -->
+    <!-- Bootstarp && jQuery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+
+        function dateFix(date) {
+            x = new Date(date);
+            var day = ("0" + x.getDate()).slice(-2);
+            var month = ("0" + (x.getMonth() + 1)).slice(-2);
+            var today = x.getFullYear() + "-" + (month) + "-" + (day);
+            return today
+
+        }
+
+        // =====================variables===============
+        // =============================================
+        // buttons
+        bushowAddModal = document.getElementById('showAddModal');
+        buAddEmp = document.getElementById('buAddEmp');
+        buDelEmp = document.getElementById('buDelEmp')
+        buUpdateEmp = document.getElementById('buUpdateEmp')
+        radYes = document.getElementById('radYes');
+        radNo = document.getElementById('radNo');
+
+        // inputs
+        empName = document.getElementById('empName');
+        // empDepId = document.getElementById('empDepId');
+        gender = document.getElementById('gender');
+        birth = document.getElementById('birth');
+        isActive = document.getElementById('isActive');
+        salary = document.getElementById('salary');
+        yrsEx = document.getElementById('yrsEx');
+        notes = document.getElementById('notes');
+
+        // html elements
+        var alert = document.getElementById('alert');
+        var listInAddModal = document.getElementById('depIdListAdd')
+        alert.style.display = 'none';
+        depsIDs = [];
+
+        let currentRowIndex = null;
+        let currentDepName = null;
+        let method = null;
+        let url = null;
+        let msg = null;
+
+        // Get the current year for the copyright
+        $('#year').text(new Date().getFullYear());
+
+
+
+
+        // ==================check==================
+        const checkInputs = () => {
+            empName.classList.remove("is-invalid");
+            listInAddModal.classList.remove("is-invalid");
+            gender.classList.remove("is-invalid");
+            birth.classList.remove("is-invalid");
+            isActive.classList.remove("is-invalid");
+            salary.classList.remove("is-invalid");
+            yrsEx.classList.remove("is-invalid");
+            notes.classList.remove("is-invalid");
+
+            switch (true) {
+
+                case !/^[A-Za-z'\s]+$/.test(empName.value):
+                    empName.classList.add("is-invalid");
+                    return false;
+                // emp dep id 
+                case listInAddModal.value == "":
+                    listInAddModal.classList.add("is-invalid");
+                    return false;
+
+                // gender check
+                case gender.value != "male" && gender.value != "female":
+                    gender.classList.add("is-invalid");
+                    return false;
+                // birth date check
+                case (new Date(birth.value) == "Invalid Date"):
+                    birth.classList.add("is-invalid");
+                    return false;
+
+                // salary check
+                case isNaN(salary.value) || Number(salary.value) < 0 || salary.value === "":
+                    salary.classList.add("is-invalid");
+                    return false;
+                // yrs of exp check
+                case !Number.isInteger(Number(yrsEx.value)) || yrsEx.value === "":
+                    yrsEx.classList.add("is-invalid");
+                    return false;
+
+                default:
+                    return true;
+            }
+        }
+
+        // ! add ----------------------------------
+        bushowAddModal.onclick = showAddModal;
+        function showAddModal() {
+
+            method = 'post';
+            url = 'https://trainingg.herokuapp.com/emps';
+            msg = 'add';
+            document.getElementById('addEmpModalHeader').innerHTML = 'Add employee ';
+            $('#addEmpModal').modal('show');
+        }
+
+        buAddEmp.onclick = empAddorUpdate;
+        async function empAddorUpdate() {
+            console.log('clicked buAddEmp');
+            checkInputs();
+            if (checkInputs()) {
+                let newEmp = {
+
+                    name: empName.value,
+                    depid: parseInt(listInAddModal.value),
+                    gender: (gender.value == 'male') ? true : false,
+                    birthday: birth.value,
+                    isactive: (radYes.checked) ? true : false,
+                    salary: parseFloat(salary.value),
+                    yrsofexp: parseInt(yrsEx.value),
+                    notes: notes.value
+                }
+
+                const response = await fetch(url, {
+                    method: method,
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newEmp)
+
+                })
+                const st = await response.status;
+                const data = await response.json();
+
+                if (st === 200) {
+                    alert.style.display = 'block';
+                    alert.classList.add('alert-success')
+                    alert.innerHTML = 'employee ' + msg
+                } else {
+                    alert.style.display = 'block';
+                    alert.classList.add('alert-danger')
+                    alert.innerHTML = 'unable to ' + msg + 'ed employee'
+                }
+
+
+
+                refresh();
+                $('#addEmpModal').modal('hide');
+
+            }
+        }
+
+        //! update --------------------------------
+
+        async function showUpdateModal(elem) {
+            currentRowIndex = $(elem).parent().parent().parent().parent().index();
+            currentEmpId = empTable.rows[currentRowIndex].cells[0].innerText;
+            currentEmpName = empTable.rows[currentRowIndex].cells[1].innerText;
+
+            const response = await fetch('https://trainingg.herokuapp.com/emps/' + currentEmpId);
+            const data = await response.json();
+            console.log(data);
+            empName.value = data.name;
+            listInAddModal.value = data.depid;
+            gender.value = (data.gender) ? 'male' : 'female';
+            birth.value = dateFix(data.birthday) ;
+            salary.value =  Number(data.salary.replace("$","").replace(/,/g ,"",));
+            yrsEx.value = data.yrsofexp;
+            notes.value = data.notes;
+
+            if (data.isactive) {
+                radYes.checked = true;
+                radNo.checked = false;
+            }
+            else {
+                radYes.checked = false;
+                radNo.checked = true;
+            }
+
+            document.getElementById('depNameHeader').innerHTML = 'Delete ' + currentDepName + ' ?';
+
+            method = 'put';
+            url = 'https://trainingg.herokuapp.com/emps/' + currentEmpId;
+            msg = 'update';
+            document.getElementById('addEmpModalHeader').innerHTML = 'Update ' + currentEmpName + ' ?';
+            $('#addEmpModal').modal('show');
+        }
+
+
+        //! delete --------------------------------
+        function showDelModal(elem) {
+            currentRowIndex = $(elem).parent().parent().parent().parent().index();
+            currentEmpId = empTable.rows[currentRowIndex].cells[0].innerText;
+            currentEmpName = empTable.rows[currentRowIndex].cells[1].innerText;
+            document.getElementById('depNameHeader').innerHTML = 'Delete ' + currentEmpName + ' ?';
+            $('#delEmpModal').modal('show');
+        }
+
+        buDelEmp.onclick = function () {
+
+            fetch('https://trainingg.herokuapp.com/emps/' + currentEmpId, {
+                method: 'delete',
+            })
+                .then(res => {
+                    res.json()
+                    console.log(res.status)
+                    if (res.status === 200) {
+                        alert.style.display = 'block';
+                        alert.classList.add('alert-success')
+                        alert.innerHTML = 'employee deleted'
+                    } else {
+                        alert.style.display = 'block';
+                        alert.classList.add('alert-danger')
+                        alert.innerHTML = 'unable to delete employee'
+                    }
+                })
+
+            empTable.deleteRow(currentRowIndex);
+            $('#delEmpModal').modal('hide');
+        };
+
+
+
+        //  =================== DOM ==========================
+        //  ==================================================
+
+        function addRowEmp(obj) {
+            var empTable = document.getElementById("empTable");
+            var row = empTable.insertRow();
+
+            var idCell = row.insertCell(0);
+            var nameCell = row.insertCell(1);
+            var genderCell = row.insertCell(2);
+            var depidCell = row.insertCell(3);
+            var birthCell = row.insertCell(4);
+            var isActiveCell = row.insertCell(5);
+            var salaryCell = row.insertCell(6);
+            var yrsExCell = row.insertCell(7);
+            var notesCell = row.insertCell(8);
+            var optionsCell = row.insertCell(9);
+
+            idCell.innerHTML = obj.id;
+            nameCell.innerHTML = obj.name;
+            depidCell.innerHTML = obj.depid;
+            genderCell.innerHTML = (obj.gender) ? 'male' : 'female';
+            birthCell.innerHTML = new Date(obj.birthday).toDateString();
+            isActiveCell.innerHTML = obj.isactive;
+            salaryCell.innerHTML = obj.salary;
+            yrsExCell.innerHTML = obj.yrsofexp;
+            notesCell.innerHTML = obj.notes;
+            optionsCell.innerHTML = ' <div class="row">\
+                                        <div class="col-md-6 text-warning "><i onclick="showUpdateModal(this)" class=" pointer fas fa-edit"></i> </div>\
+                                        <div class="col-md-6 text-danger "><i  onclick="showDelModal(this)" class=" pointer fas fa-trash"></i> </div>\
+                                    </div>';
+        }
+
+
+
+
+
+        // on hide ---------------------------------
+
+
+        $('#addEmpModal').on('hide.bs.modal', function (e) {
+
+
+            currentRowIndex = null;
+            currentDepName = null;
+            method = null;
+            url = null;
+            msg = null;
+
+            empName.value = "";
+            listInAddModal.value = "";
+            gender.value = "";
+            birth.value = "";
+            isActive.value = "";
+            salary.value = "";
+            yrsEx.value = "";
+            notes.value = "";
+            radYes.checked = true;
+
+            empName.classList.remove("is-invalid");
+            listInAddModal.classList.remove("is-invalid");
+            gender.classList.remove("is-invalid");
+            birth.classList.remove("is-invalid");
+            isActive.classList.remove("is-invalid");
+            salary.classList.remove("is-invalid");
+            yrsEx.classList.remove("is-invalid");
+            notes.classList.remove("is-invalid");
+
+
+            empName.classList.remove("is-valid");
+            listInAddModal.classList.remove("is-valid");
+            gender.classList.remove("is-valid");
+            birth.classList.remove("is-valid");
+            isActive.classList.remove("is-valid");
+            salary.classList.remove("is-valid");
+            yrsEx.classList.remove("is-valid");
+            notes.classList.remove("is-valid");
+
+            setTimeout(() => {
+
+                alert.style.display = 'none';
+                alert.classList.remove('alert-success')
+                alert.classList.remove('alert-danger')
+                alert.innerHTML = ''
+            }, 3000);
+        })
+
+
+
+        $('#delEmpModal').on('hide.bs.modal', function (e) {
+            currentRowIndex = null;
+            currentEmpId = null;
+            currentEmpName = null;
+            setTimeout(() => {
+                alert.style.display = 'none';
+                alert.classList.remove('alert-success')
+                alert.classList.remove('alert-danger')
+                alert.innerHTML = ''
+            }, 3000);
+        })
+
+
+
+
+        // refresh----------------------------===
+
+
+        function refresh() {
+            fetch('https://trainingg.herokuapp.com/emps/all')
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    $("#empTable  tr").remove();
+                    revData = data//.reverse()
+                    for (let i = 0; i < data.length; i++) {
+
+                        addRowEmp(revData[i]);
+                    }
+
+                    console.log(depsIDs);
+
+                })
+
+            fetch('https://trainingg.herokuapp.com/deps/all')
+                .then(res => res.json())
+                .then(dataDep => {
+                    depsIDs = [];
+                    listInAddModal.innerHTML="";
+                    for (let i = 0; i < dataDep.length; i++) {
+                        depsIDs.push(dataDep[i].id)
+                        var listElementInAdd = document.createElement('option');
+                        listElementInAdd.appendChild(document.createTextNode(dataDep[i].id));
+                        listInAddModal.appendChild(listElementInAdd);
+                    }
+
+                })
+
+        }
+
+
+        refresh()
+
+    </script>
+
+    <!-- my script -->
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
