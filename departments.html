@@ -183,7 +183,7 @@
                     <h5 id="depNameHeader" class="modal-title">Delete {department name}</h5>
                     <button class="close" data-dismiss="modal">×</button>
                 </div>
-                <div class="modal-body">
+                <div id="delBody" class="modal-body">
                     Are you sure you want to delete this department?
                 </div>
                 <div class="modal-footer">
@@ -213,6 +213,7 @@
         var buDelDepRow = document.getElementById('buDelDepRow');
         var buUpdateDep = document.getElementById('buUpdateDep')
         // divs
+        delBody = document.getElementById('delBody');
         var alert = document.getElementById('alert');
         // inputs
         var newDepName = document.getElementById('newDepName');
@@ -355,13 +356,30 @@
 
 
         //! delete --------------------------------
-        function showDelModal(elem) {
-            $('#delDepModal').modal('show');
+        async function showDelModal(elem) {
+
+
+            const response = await fetch('https://trainingg.herokuapp.com/emps/all');
+            const data = await response.json();
             currentRowIndex = $(elem).parent().parent().parent().parent().index();
             currentDepId = depTable.rows[currentRowIndex].cells[0].innerText;
             currentDepName = depTable.rows[currentRowIndex].cells[1].innerText;
+            let arrEmpIds = [];
+            for (let i = 0; i < data.length; i++) {
+                arrEmpIds.push(data[i].depid);
+            }
             document.getElementById('depNameHeader').innerHTML = 'Delete ' + currentDepName + ' ?';
+            console.log(arrEmpIds);
+            console.log(arrEmpIds.includes(parseInt(currentDepId)));
+            if (arrEmpIds.includes(parseInt(currentDepId))) {
+                buDelDepRow.disabled = true;
+                delBody.innerHTML = "you cant delete this department because it has one or more employees, please delete all employees in this department then try again";
+                document.getElementById('depNameHeader').innerHTML = 'Unable to delete ' + currentDepName + ' ?';
+            } 
+                $('#delDepModal').modal('show');
 
+               
+            
         }
 
         buDelDepRow.onclick = function () {
@@ -397,6 +415,9 @@
         $('#updateDepModal').on('hide.bs.modal', function (e) {
             updateDepName.value = "";
             updateDepNotes.value = "";
+            buDelDepRow.disabled = false;
+            delBody.innerHTML = "Are you sure you want to delete this department?";
+
             setTimeout(() => {
                 alert.style.display = 'none';
                 alert.classList.remove('alert-success')
@@ -408,7 +429,7 @@
         $('#addDepModal').on('hide.bs.modal', function (e) {
             newDepName.value = "";
             newDepNotes.value = "";
-           setTimeout(() => {
+            setTimeout(() => {
                 alert.style.display = 'none';
                 alert.classList.remove('alert-success')
                 alert.classList.remove('alert-danger')
