@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
 </head>
 
 <body>
@@ -61,7 +63,7 @@
             <!-- ======================================================= -->
             <!--                        table                            -->
             <!-- ======================================================= -->
-            <table class="table table-bordered table-hover text-center">
+            <table id="table" class="table table-bordered table-hover text-center">
                 <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
@@ -228,9 +230,13 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 
     <script>
+        // $(document).ready(function () {
+        //     $('#table').DataTable();
+        // });
 
         function dateFix(date) {
             x = new Date(date);
@@ -567,6 +573,7 @@
 
                         addRowEmp(revData[i]);
                     }
+                    $('#table').DataTable();
 
                     console.log(depsIDs);
 

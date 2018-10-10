@@ -13,68 +13,70 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
 </head>
 
 <body>
     <!-- .................................................. -->
     <!-- navbar -->
     <nav class=" navbar fixed-top navbar-expand-sm navbar-dark bg-dark mb-1 ">
-            <div class="container">
-                    <a class="navbar-brand" href="#">Training</a>
-                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div id="navbarNav" class="collapse navbar-collapse">
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="departments.html">Departments</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="employees.html">Employees</a>
-                            </li>
-                            <li class="nav-item">
-                                <a id="logincorner" class="nav-link" href="index.html">signout</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <div class="container">
+            <a class="navbar-brand" href="#">Training</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="departments.html">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="employees.html">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="logincorner" class="nav-link" href="index.html">signout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
     <!-- main body -->
     <div class=" main ">
-        
-                <div class="container-d ">
-                    <h2 class="mb-5 p-3">Departments</h2>
-                    <!-- actions -->
-                    <div id="actions" class="mb-3">
 
-                        <div class="row">
-                            <div class="col-md-5">
-                                <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addDepModal">
-                                    <i class="fas fa-plus"></i> Add department
-                                </a>
-                            </div>
-                        </div>
+        <div class="container-d ">
+            <h2 class="mb-5 p-3">Departments</h2>
+            <!-- actions -->
+            <div id="actions" class="mb-3">
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <a href="#" class="btn btn-success btn-block" data-toggle="modal" data-target="#addDepModal">
+                            <i class="fas fa-plus"></i> Add department
+                        </a>
                     </div>
-                    <!-- table -->
-                    <table class="table table-bordered table-hover text-center">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Department Name</th>
-                                <th>Description</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="depTable">
+                </div>
+            </div>
+            <!-- table -->
+            <table id="tabled" class="table table-bordered table-hover text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Department Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="depTable">
 
 
-                        </tbody>
-                    </table>
-                    <div id="alert" class="alert alert-success text-center">
+                </tbody>
+            </table>
+            <div id="alert" class="alert alert-success text-center">
 
-                    </div>
-               
+            </div>
+
         </div>
     </div>
 
@@ -198,6 +200,9 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
 
     <!-- my script -->
     <!-- <script type="text/javascript" src="script.js"></script> -->
@@ -459,6 +464,7 @@
                     for (let i = 0; i < data.length; i++) {
                         addRowDep(revData[i]);
                     }
+                    $('#tabled').DataTable();
 
                 })
         }
