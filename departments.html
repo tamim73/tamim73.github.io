@@ -18,34 +18,31 @@
 <body>
     <!-- .................................................. -->
     <!-- navbar -->
-    <nav class=" navbar fixed-top navbar-expand-sm navbar-dark bg-dark ">
-        <div class="container">
-            <a class="navbar-brand" href="">Training</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a id="logincorner" class="nav-link" href="index.html">signout</a>
-                </li>
-            </ul>
-        </div>
+    <nav class=" navbar fixed-top navbar-expand-sm navbar-dark bg-dark mb-1 ">
+            <div class="container">
+                    <a class="navbar-brand" href="#">Training</a>
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div id="navbarNav" class="collapse navbar-collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="departments.html">Departments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="employees.html">Employees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="logincorner" class="nav-link" href="index.html">signout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
     </nav>
 
     <!-- main body -->
     <div class=" main ">
-        <div class=" row">
-            <!-- sidebar -->
-            <div class="col-md-3  text-center content1 mb-3 bg-dark">
-
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="departments.html">Departments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="employees.html">Employees</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- content -->
-            <div class="col-md-9 content1">
+        
                 <div class="container-d ">
                     <h2 class="mb-5 p-3">Departments</h2>
                     <!-- actions -->
@@ -77,8 +74,7 @@
                     <div id="alert" class="alert alert-success text-center">
 
                     </div>
-                </div>
-            </div>
+               
         </div>
     </div>
 
@@ -204,7 +200,7 @@
         crossorigin="anonymous"></script>
 
     <!-- my script -->
-    <script type="text/javascript" src="script.js"></script>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
     <script>
         // tabe
         var depTable = document.getElementById("depTable");
@@ -375,11 +371,11 @@
                 buDelDepRow.disabled = true;
                 delBody.innerHTML = "you cant delete this department because it has one or more employees, please delete all employees in this department then try again";
                 document.getElementById('depNameHeader').innerHTML = 'Unable to delete ' + currentDepName + ' ?';
-            } 
-                $('#delDepModal').modal('show');
+            }
+            $('#delDepModal').modal('show');
 
-               
-            
+
+
         }
 
         buDelDepRow.onclick = function () {

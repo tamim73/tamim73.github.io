@@ -18,77 +18,72 @@
 <body>
     <!-- .................................................. -->
     <!-- navbar -->
-    <nav class=" navbar fixed-top navbar-expand-sm navbar-dark bg-dark ">
+    <nav class="  navbar fixed-top navbar-expand-sm navbar-dark bg-dark mb-1 ">
         <div class="container">
-            <a class="navbar-brand" href="">Training</a>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a id="logincorner" class="nav-link" href="index.html">signout</a>
-                </li>
-            </ul>
+            <a class="navbar-brand" href="#">Training</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarNav" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="departments.html">Departments</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="employees.html">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="logincorner" class="nav-link" href="index.html">signout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <!-- main body -->
     <div class=" main ">
-        <div class=" row">
-            <!-- sidebar -->
-            <div class="col-md-3 col-xl-2 text-center content1 mb-3 bg-dark">
+        <div class="container-s ">
+            <h2 class="mb-5 p-3">Employees</h2>
 
-                <ul class="nav nav-pills flex-column">
-                    <li class="nav-item">
-                        <a href="departments.html" class="nav-link text-white" href="">Departments</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="employees.html" class="nav-link text-white" href="">Employees</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- content -->
-            <div class="col-md-9 col-xl-10 content1">
-                <div class="container-s ">
-                    <h2 class="mb-5 p-3">Employees</h2>
+            <!-- actions -->
+            <div id="actions" class="mb-3">
 
-                    <!-- actions -->
-                    <div id="actions" class="mb-3">
-
-                        <div class="row">
-                            <div class="col-md-5">
-                                <a id="showAddModal" class="btn btn-success btn-block">
-                                    <i class="fas fa-plus"></i> Add employee
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- ======================================================= -->
-                    <!--                        table                            -->
-                    <!-- ======================================================= -->
-                    <table class="table table-bordered table-hover text-center">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Gender</th>
-                                <th>Dep ID</th>
-                                <th>Birthday</th>
-                                <th>Is Active</th>
-                                <th>salary</th>
-                                <th>Years Of Ex.</th>
-                                <th>Notes</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody id="empTable">
-                            <!-- dynamic -->
-                        </tbody>
-                    </table>
-                    <div id="alert" class="alert alert-success text-center">
-
+                <div class="row">
+                    <div class="col-md-5">
+                        <a id="showAddModal" class="btn btn-success btn-block">
+                            <i class="fas fa-plus"></i> Add employee
+                        </a>
                     </div>
                 </div>
             </div>
+
+
+            <!-- ======================================================= -->
+            <!--                        table                            -->
+            <!-- ======================================================= -->
+            <table class="table table-bordered table-hover text-center">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Dep ID</th>
+                        <th>Birthday</th>
+                        <th>Is Active</th>
+                        <th>salary</th>
+                        <th>Years Of Ex.</th>
+                        <th>Notes</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="empTable">
+                    <!-- dynamic -->
+                </tbody>
+            </table>
+            <div id="alert" class="alert alert-success text-center">
+
+            </div>
+
         </div>
     </div>
 
@@ -175,7 +170,7 @@
                             <label for="salary">salary</label>
                             <input class="form-control" type="number" min="0" maxlength="7" id="salary" placeholder="Enter employee salary in USD">
                             <div class="invalid-feedback">
-                                Enter a valid number 
+                                Enter a valid number
                             </div>
                         </div>
 
@@ -396,8 +391,8 @@
             empName.value = data.name;
             listInAddModal.value = data.depid;
             gender.value = (data.gender) ? 'male' : 'female';
-            birth.value = dateFix(data.birthday) ;
-            salary.value =  Number(data.salary.replace("$","").replace(/,/g ,"",));
+            birth.value = dateFix(data.birthday);
+            salary.value = Number(data.salary.replace("$", "").replace(/,/g, ""));
             yrsEx.value = data.yrsofexp;
             notes.value = data.notes;
 
@@ -581,7 +576,7 @@
                 .then(res => res.json())
                 .then(dataDep => {
                     depsIDs = [];
-                    listInAddModal.innerHTML="";
+                    listInAddModal.innerHTML = "";
                     for (let i = 0; i < dataDep.length; i++) {
                         depsIDs.push(dataDep[i].id)
                         var listElementInAdd = document.createElement('option');
