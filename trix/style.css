@@ -1,0 +1,103 @@
+@import url("reset.css");
+body {
+    
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    background-color:#FF6EDD }
+p {
+    padding: 10px;
+}
+h2, h1{
+    font-size: 1.5em;
+}
+#wrapper {
+    width: 100%;
+    min-width: 400px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+#area {
+    margin: 0;
+    align-self: center;
+    background-color:#383838;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 400px;
+}
+
+#footer {
+    text-align: center;
+    height: 25vh;text-align: center;
+    width: 100%;
+    background: #FF6EDD;
+    align-content: center;
+    align-items: center;
+}
+/* #pBDiv{}
+#pTDiv,#pLDiv,#pRDiv {} */
+#rightArea,#playerArea,#topArea,#leftArea {display: flex;justify-content: center;}
+img{
+    margin: 0;
+    display: inline-flex;
+    align-self: center;
+    justify-content: center;
+}
+.iimg:hover { transform: scale(1.2); }
+/* button{} */
+#leftArea{width: 100px;height: 200px;align-self: center;}
+#rightArea{width: 100px;height: 200px;align-self: center;}
+#topArea{width: 100px;height: 200px;align-self: flex-start;}
+#playerArea{width: 100px;height: 200px;align-self: flex-end;}
+
+.flashit{
+    
+      -webkit-animation: flash linear 1s infinite;
+      animation: flash linear 1s infinite;
+  }
+
+.flash-button{
+	background:blue;
+	padding:5px 10px;
+	color:#fff;
+	border:none;
+	border-radius:5px;
+	
+	animation-name: flash;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+
+	/* //Firefox 1+ */
+	-webkit-animation-name: flash;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+
+	/* //Safari 3-4 */
+	-moz-animation-name: flash;
+	-moz-animation-duration: 1s;
+	-moz-animation-timing-function: linear;
+	-moz-animation-iteration-count: infinite;
+}
+
+@keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+
+/* //Firefox 1+ */
+@-webkit-keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}
+/* 
+//Safari 3-4 */
+@-moz-keyframes flash {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1.0; }
+}

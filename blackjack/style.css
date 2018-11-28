@@ -1,0 +1,26 @@
+body { background-color: #3d2933 }
+
+header { color : white;align-items: center; text-align: center;}
+
+#mainDiv { text-align: center; }
+
+h1,h2,h3,ul { color : white; }
+
+#pImgBox,#cImgBox { }
+
+#pInfoBox,#cInfoBox { padding-right: 30px; text-align: center; }
+
+hr,.clr { clear: both; }
+
+#playerDiv,#cpuDiv { display: inline-flex;  }
+
+#midDiv { 	display: block;
+			width: 50%;
+			margin: auto;
+			text-align: center;
+			}
+button {margin-right: auto;
+			margin-left: auto;}
+
+h4 { text-align: center; color: red;font-family:monospace;font-size: x-large; }
+
