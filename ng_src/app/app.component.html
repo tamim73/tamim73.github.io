@@ -1,0 +1,76 @@
+<!--
+  -- ─── APP CONTAINER ──────────────────────────────────────────────────────────────
+-->
+<div class="example-container" [class.is-mobile]="mobileQuery.matches">
+  <!--
+    -- ─── TOOLBAR ────────────────────────────────────────────────────────────────────
+  -->
+  <mat-toolbar color="primary" id="apptoolbar">
+    <!-- toggle sidebar button -->
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon class="black">menu</mat-icon>
+    </button>
+    <!-- brand -->
+    <span class="mh3 pr3  link pointer b fw7 f3 near-black" [routerLink]="[ '/home']">myApp</span>
+    <!-- navs -->
+    <a  class="mh3 link dim pointer near-white" [routerLink]="[ '/departments']">Departments</a>
+    <span class="mh3 link dim pointer near-white">two</span>
+    <span class="spacer "></span>
+    <span *ngIf="authService.isLoggedIn()===false" class="mh3 link dim pointer" [routerLink]="[ '/login']">login</span>
+    <span *ngIf="authService.isLoggedIn()===true" class="mh3 link dim pointer" (click)="authService.logout()" [routerLink]="[ '/login']">logout</span>
+
+  </mat-toolbar>
+  <!--
+    -- ─── SIDEBAR + CONTENT CONTAINER ────────────────────────────────────────────────
+  -->
+  <mat-sidenav-container
+    class="example-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <!--
+      -- ─── SIDEBAR ─────────────────────────────────────────────────────
+    -->
+    <mat-sidenav
+      id="sidebar"
+      #snav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+      [opened]="xlScreenQuery.matches"
+    >
+      <!-- sidebar items -->
+      <mat-nav-list>
+        <div *ngFor="let item of snavItems">
+          <!-- if divider -->
+          <mat-divider *ngIf="item.divider; else: navitem"></mat-divider>
+          <!-- if nav item -->
+          <ng-template #navitem>
+            <mat-list-item>
+              <!-- icon -->
+              <mat-icon class="mat-18 mr3">{{ item.icon }}</mat-icon>
+              <!-- text -->
+              <a  routerLink=".">{{ item.text }}</a>
+            </mat-list-item>
+          </ng-template>
+          <!--
+            <ng-template *ngIf="item.divider ? divider : navItem"></ng-template>
+            <ng-template #divider>
+                <mat-divider></mat-divider>
+            </ng-template>
+            <ng-template #navItem>
+                <a mat-list-item routerLink="." >{{
+                    item.text
+                  }}</a>
+              </ng-template>
+          -->
+        </div>
+      </mat-nav-list>
+    </mat-sidenav>
+    <!--
+      -- ─── CONTENT ─────────────────────────────────────────────────────
+    -->
+    <mat-sidenav-content class="ma3 pa3 tj  ">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

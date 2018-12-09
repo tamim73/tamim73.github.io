@@ -1,0 +1,67 @@
+<!-- Material form login -->
+<mat-card class="container-s mt5">
+
+  <mat-card-title class="info-color white-text text-center py-4">
+    <h5>
+      <strong>Sign in</strong>
+    </h5>
+  </mat-card-title>
+
+
+  <!--Card content-->
+  <mat-card-content >
+
+    <!-- Form -->
+    <form class="matform" style="color: #757575;" [formGroup]="loginFG">
+
+      <!-- Email -->
+      <mat-form-field style="font-size: 1.25rem;">
+        <input matInput placeholder="Email" type="email" formControlName="email"  >
+        <mat-error *ngIf="loginFG.controls.email.invalid">{{getErrorMsg('email')}}</mat-error>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field style="font-size: 1.25rem;"  >
+        <input matInput placeholder="Password" type="password" formControlName="hash"  >
+        <mat-error *ngIf="loginFG.controls.hash.invalid">{{getErrorMsg('hash')}}</mat-error>
+      </mat-form-field>
+
+      <!-- <div class="flex justify-around ma3 ">
+        <div>
+          <mat-checkbox>Remember me</mat-checkbox>
+        </div>
+        <div>
+          <a href="#">Forgot password?</a>
+        </div>
+      </div> -->
+      <div class="mb4"></div>
+        <!-- Sign in button -->
+        <button mat-raised-button color="primary" [disabled]="!loginFG.valid" (click)="loginUser()" >Sign in</button>
+
+        <!-- Register -->
+        <p>Not a member?
+          <a [routerLink]="[ '/register']">Register</a>
+        </p>
+    
+      <!-- Social login
+      <p>or sign in with:</p>
+      <a type="button" class="btn-floating btn-fb btn-sm">
+        <mat-icon icon="facebook"></mat-icon>
+      </a>
+      <a type="button" class="btn-floating btn-tw btn-sm">
+        <mat-icon icon="twitter"></mat-icon>
+      </a>
+      <a type="button" class="btn-floating btn-li btn-sm">
+        <mat-icon icon="linkedin"></mat-icon>
+      </a>
+      <a type="button" class="btn-floating btn-git btn-sm">
+        <mat-icon icon="github"></mat-icon>
+      </a> -->
+
+    </form>
+    <!-- Form -->
+
+  </mat-card-content>
+
+</mat-card>
+<!-- Material form login -->

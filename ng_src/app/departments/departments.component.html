@@ -1,0 +1,19 @@
+
+<div class="container">
+    <p class="fw9 " >
+        departments works!
+      </p>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis iusto nulla mollitia consequuntur reiciendis blanditiis vel consequatur, numquam sint odit, tenetur tempore sit, ea unde quo inventore facilis et doloremque. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corporis inventore sit cum totam pariatur consequatur repudiandae. Sapiente, dolor sequi eum dolorum magnam laudantium quibusdam odio vitae tempore maiores asperiores eos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda temporibus voluptates nemo incidunt facere? Aut, magnam mollitia ex sed dolores veniam fugit porro autem provident nostrum voluptatem inventore. Sapiente, ullam.</p>
+  <app-datatable 
+  dataUrl="https://trainingg.herokuapp.com/deps/" 
+  mainRoute= "all"
+  [columns] ='[ 
+  {columnDef: "id", header: "id", type: "number"},
+  {columnDef: "name", header: "NAME", type: "text", required: true , vals : {req:"required",minl_4 :"minimum length is 4",maxl_8 :"maximum length is 8" }},
+  {columnDef: "notes", header: "NOTES", type: "textarea", required: true,vals:{minl_10:"enter at least 10 letters"}}
+]'
+
+ ></app-datatable>
+
+
+</div>

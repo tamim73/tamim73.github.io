@@ -1,0 +1,35 @@
+
+.mat-row:hover {
+    background: #f5f5f5;
+}
+
+.mat-cell {
+ padding: 0.5rem;
+}
+
+.mat-header-cell{
+    padding: 1rem;
+   }
+
+tr :hover{
+    background: #f0eaea;
+  }
+
+  .inputfield{
+        width: 100%;
+        margin-bottom: 20px;
+  }
+
+ 
+ 
+  .modalDiv .mat-radio-button {
+    margin: 0 5px;
+  }
+
+  .radio-group {
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  
+ 

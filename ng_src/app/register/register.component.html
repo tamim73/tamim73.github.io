@@ -1,0 +1,66 @@
+<!-- Material form login -->
+<mat-card class="container-s mt5">
+
+  <mat-card-title class="info-color white-text text-center py-4">
+    <h5>
+      <strong>Sign up</strong>
+    </h5>
+  </mat-card-title>
+
+
+  <!--Card content-->
+  <mat-card-content >
+
+    <!-- Form -->
+    <form class="matform" style="color: #757575;" [formGroup]="registerFG">
+      
+      <!-- first name -->
+      <mat-form-field style="font-size: 1.25rem;">
+        <input matInput type="text"  placeholder="First Name" formControlName="firstName" required>
+        <mat-error *ngIf="registerFG.controls.firstName.invalid">{{getErrorMsg('firstName')}}</mat-error>
+      </mat-form-field>
+
+      <!-- last name -->
+      <mat-form-field style="font-size: 1.25rem;">
+        <input matInput type="text"  placeholder="Last Name" formControlName="lastName" required>
+        <mat-error *ngIf="registerFG.controls.lastName.invalid">{{getErrorMsg('lastName')}}</mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field style="font-size: 1.25rem;">
+        <input matInput type="email" placeholder="Email" formControlName="email" required>
+        <mat-error *ngIf="registerFG.controls.email.invalid">{{getErrorMsg('email')}}</mat-error>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field style="font-size: 1.25rem;">
+        <input matInput  type="password" placeholder="Password" formControlName="hash" required>
+        <mat-error *ngIf="registerFG.controls.hash.invalid">{{getErrorMsg('hash')}}</mat-error>
+      </mat-form-field>
+       <!-- confirm Password -->
+       <mat-form-field style="font-size: 1.25rem;">
+        <input matInput placeholder="Confirm Password" type="password" formControlName="confHash" >
+        <mat-error *ngIf="registerFG.controls.confHash.invalid">{{getErrorMsg('confHash')}}</mat-error>
+        <mat-error *ngIf="registerFG.hasError('notMatch')">password doesn't match</mat-error>
+      </mat-form-field>
+
+      <!-- gender -->
+      <mat-form-field style="font-size: 1.25rem;" >
+        <mat-select placeholder="Gender" formControlName="gender" required>
+            <mat-option  value="male">male</mat-option>
+            <mat-option  value="female">female</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registerFG.controls.gender.invalid">{{getErrorMsg('gender')}}</mat-error>
+      </mat-form-field>
+
+      <!-- Register in button -->
+      <button mat-raised-button color="primary" [disabled]="!registerFG.valid" (click)="registerUser()" >Register</button>
+      
+
+    </form>
+    <!-- Form -->
+
+  </mat-card-content>
+
+</mat-card>
+<!-- Material form login -->
